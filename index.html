@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informática Básica - Escola</title>
+    <title>Informática Profissionalizante</title>
     <style>
         * {
             margin: 0;
@@ -100,15 +100,20 @@
         .welcome-box {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
+            padding: 35px;
             border-radius: 15px;
             text-align: center;
             margin-bottom: 30px;
         }
 
         .welcome-box h2 {
-            font-size: 2em;
-            margin-bottom: 15px;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .welcome-box p {
+            font-size: 1.2em;
+            line-height: 1.8;
         }
 
         .info-cards {
@@ -137,7 +142,20 @@
             font-size: 1.3em;
         }
 
-        .aula-item {
+        .modulo-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .modulo-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .topico-item {
             background: white;
             border: 2px solid #e0e0e0;
             padding: 20px;
@@ -146,20 +164,21 @@
             transition: all 0.3s;
         }
 
-        .aula-item:hover {
+        .topico-item:hover {
             border-color: #667eea;
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
         }
 
-        .aula-item h3 {
+        .topico-item h3 {
             color: #1e3c72;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1.2em;
         }
 
-        .aula-item p {
+        .topico-item p {
             color: #666;
-            margin-bottom: 15px;
             line-height: 1.6;
+            margin-bottom: 10px;
         }
 
         .btn-link {
@@ -172,7 +191,7 @@
             font-weight: bold;
             transition: all 0.3s;
             margin-right: 10px;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
         .btn-link:hover {
@@ -209,68 +228,41 @@
             margin-top: 40px;
         }
 
-        .video-embed {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            margin: 20px 0;
-            border-radius: 10px;
-        }
-
-        .video-embed iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .lista-topicos {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .lista-topicos ul {
+        ul.conteudo-lista {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
         }
 
-        .lista-topicos li {
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
+        ul.conteudo-lista li {
+            padding: 8px 0;
+            padding-left: 25px;
             position: relative;
-            padding-left: 30px;
+            color: #444;
+            line-height: 1.6;
         }
 
-        .lista-topicos li:before {
+        ul.conteudo-lista li:before {
             content: "✓";
             position: absolute;
-            left: 5px;
+            left: 0;
             color: #28a745;
             font-weight: bold;
-        }
-
-        .lista-topicos li:last-child {
-            border-bottom: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>💻 Informática Básica</h1>
-            <p>Professor [Seu Nome] | Ano Letivo 2025</p>
+            <h1>💻 Informática Profissionalizante</h1>
+            <p>Professora Renata</p>
         </header>
 
         <nav>
             <button onclick="showSection('inicio')" class="active">🏠 Início</button>
-            <button onclick="showSection('windows')">🪟 Windows</button>
-            <button onclick="showSection('word')">📝 Word</button>
-            <button onclick="showSection('excel')">📊 Excel</button>
-            <button onclick="showSection('powerpoint')">📽️ PowerPoint</button>
+            <button onclick="showSection('windows')">🪟 Windows 10</button>
+            <button onclick="showSection('word')">📝 Word 2016</button>
+            <button onclick="showSection('excel')">📊 Excel 2016</button>
+            <button onclick="showSection('powerpoint')">📽️ PowerPoint 2016</button>
             <button onclick="showSection('entregas')">📤 Entregar Trabalhos</button>
         </nav>
 
@@ -278,174 +270,289 @@
             <!-- SEÇÃO INÍCIO -->
             <div id="inicio" class="section active">
                 <div class="welcome-box">
-                    <h2>Bem-vindo(a) à disciplina!</h2>
-                    <p>Aqui você encontra todos os materiais, exercícios e pode entregar seus trabalhos</p>
+                    <h2>🎉 Seja muito bem-vindo(a)!</h2>
+                    <p>Que alegria ter você aqui! 😊 Este é o nosso cantinho virtual onde a tecnologia se torna simples, divertida e cheia de possibilidades! Prepare-se para uma jornada incrível pelo mundo da informática, onde cada clique é uma nova descoberta e cada aprendizado é uma conquista! Vamos juntos transformar o "eu não sei" em "eu consigo"! 💪✨</p>
+                    <p style="margin-top: 15px;">Aqui você encontra tudo que precisa: materiais, exercícios e um espaço especial para enviar seus trabalhos. Bora começar? 🚀</p>
                 </div>
 
                 <div class="info-cards">
                     <div class="card">
                         <h3>📚 Materiais</h3>
-                        <p>Acesse os arquivos de cada aula clicando nos menus acima</p>
+                        <p>Acesse os conteúdos de cada módulo clicando nos menus acima</p>
                     </div>
                     <div class="card">
                         <h3>✏️ Exercícios</h3>
-                        <p>Baixe as atividades prontas para praticar</p>
+                        <p>Baixe as atividades prontas para praticar e desenvolver suas habilidades</p>
                     </div>
                     <div class="card">
                         <h3>📤 Entregas</h3>
-                        <p>Use o formulário para enviar seus trabalhos concluídos</p>
+                        <p>Use o formulário para enviar seus trabalhos concluídos de forma fácil e rápida</p>
                     </div>
                 </div>
 
                 <div class="destaque" style="margin-top: 30px;">
                     <strong>📌 IMPORTANTE:</strong> Salve seus trabalhos com o seguinte padrão de nome: <strong>SeuNome_Turma_NomeDaAtividade</strong>
-                    <br>Exemplo: JoaoSilva_2A_ExercicioExcel01
+                    <br>Exemplo: MariaSilva_TurmaA_ExercicioWord01
                 </div>
             </div>
 
             <!-- SEÇÃO WINDOWS -->
             <div id="windows" class="section">
-                <h2 style="color: #1e3c72; margin-bottom: 20px;">🪟 Aulas de Windows</h2>
+                <div class="modulo-header">
+                    <h2>🪟 Microsoft Windows 10</h2>
+                    <p>Domine o sistema operacional mais utilizado no mundo!</p>
+                </div>
 
-                <div class="aula-item">
-                    <h3>Aula 01 - Introdução ao Windows</h3>
-                    <p>Conhecendo a área de trabalho, barra de tarefas, menu iniciar e configurações básicas do sistema.</p>
-                    <div class="lista-topicos">
-                        <ul>
-                            <li>Área de trabalho e ícones</li>
-                            <li>Menu Iniciar</li>
-                            <li>Barra de tarefas</li>
-                            <li>Gerenciador de arquivos</li>
-                        </ul>
-                    </div>
+                <div class="topico-item">
+                    <h3>Capítulo I - Conhecendo o computador</h3>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Baixar Exercício</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 02 - Gerenciamento de Arquivos e Pastas</h3>
-                    <p>Aprenda a criar, copiar, mover, renomear e organizar arquivos e pastas no Windows Explorer.</p>
+                <div class="topico-item">
+                    <h3>Capítulo II - Ligar e desligar | Capítulo III - Painel de controle</h3>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Baixar Exercício</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 03 - Configurações e Personalização</h3>
-                    <p>Personalize seu Windows: papel de parede, temas, cores e configurações de acessibilidade.</p>
+                <div class="topico-item">
+                    <h3>Capítulo IV - Organização de arquivos e pastas no computador</h3>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Capítulo VI - WordPad</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Capítulo VII - Clipboard</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Capítulo VIII - Compactar e descompactar arquivos (ARQUIVO ZIP)</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Capítulo X - Rede social</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Revisão teórica e prática</h3>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Avaliação teórica e prática</h3>
+                    <p>Momento de mostrar tudo que você aprendeu!</p>
                 </div>
             </div>
 
             <!-- SEÇÃO WORD -->
             <div id="word" class="section">
-                <h2 style="color: #1e3c72; margin-bottom: 20px;">📝 Aulas de Word</h2>
+                <div class="modulo-header">
+                    <h2>📝 Microsoft Word 2016</h2>
+                    <p>Crie documentos profissionais com facilidade!</p>
+                </div>
 
-                <div class="aula-item">
-                    <h3>Aula 01 - Introdução ao Word</h3>
-                    <p>Interface do programa, criação de documento, formatação básica de texto (fonte, tamanho, cor, negrito, itálico).</p>
+                <div class="topico-item">
+                    <h3>Introdução ao Microsoft Word, formatação de textos e apresentação das guias</h3>
+                    <ul class="conteudo-lista">
+                        <li>Conhecendo a interface do Word</li>
+                        <li>Formatação básica de textos</li>
+                        <li>Explorando as guias e ferramentas</li>
+                    </ul>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Baixar Exercício</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 02 - Formatação de Parágrafos</h3>
-                    <p>Alinhamento, espaçamento entre linhas, recuos e marcadores.</p>
+                <div class="topico-item">
+                    <h3>Criação de tabelas e formatação</h3>
+                    <p>Aprenda a criar e formatar tabelas profissionais: alinhamento, cor da linha, página, quebra de página, marca d'água, número de página).</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Baixar Exercício</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 03 - Inserindo Imagens e Tabelas</h3>
-                    <p>Como adicionar imagens, formatar e criar tabelas simples no documento.</p>
+                <div class="topico-item">
+                    <h3>Ilustrações (Smart art)</h3>
+                    <p>Crie diagramas e gráficos visuais incríveis com Smart Art.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Baixar Exercício</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 04 - Criando um Currículo</h3>
-                    <p>Projeto prático: crie seu próprio currículo aplicando tudo que aprendeu.</p>
-                    <a href="#" class="btn-link">📥 Modelo de Currículo</a>
-                    <a href="#" class="btn-link">📋 Instruções do Projeto</a>
+                <div class="topico-item">
+                    <h3>Imagens (cole inserir e ferramentas de imagens)</h3>
+                    <p>Domine a inserção e edição de imagens nos seus documentos.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Carta comercial, procurações, jornal mural (cabeçalho e rodapé)</h3>
+                    <p>Crie documentos oficiais e profissionais com configuração adequada.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Revisão teórica e prática - utilizar da ferramenta Google formulário</h3>
+                    <a href="#" class="btn-link">📋 Acessar Formulário</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Avaliação teórica e prática</h3>
+                    <p>Hora de demonstrar todo seu conhecimento!</p>
                 </div>
             </div>
 
             <!-- SEÇÃO EXCEL -->
             <div id="excel" class="section">
-                <h2 style="color: #1e3c72; margin-bottom: 20px;">📊 Aulas de Excel</h2>
+                <div class="modulo-header">
+                    <h2>📊 Microsoft Excel 2016</h2>
+                    <p>Transforme dados em informações valiosas!</p>
+                </div>
 
-                <div class="aula-item">
-                    <h3>Aula 01 - Introdução ao Excel</h3>
-                    <p>Conhecendo células, linhas, colunas e navegação básica na planilha.</p>
+                <div class="topico-item">
+                    <h3>Introdução ao Microsoft Excel - Atividade 01</h3>
+                    <p>Conheça a interface, células, linhas, colunas e navegação básica. Fórmulas: soma, multiplicação, divisão e subtração. Classificação de dados.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Planilha para Praticar</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 02 - Fórmulas Básicas</h3>
-                    <p>Soma, subtração, multiplicação e divisão. Função SOMA e MÉDIA.</p>
+                <div class="topico-item">
+                    <h3>Atividade 02: Formatação necessária</h3>
+                    <p>Fórmulas: média, SE, máximo, mínimo. Formatação condicional.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Exercícios de Fórmulas</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 03 - Formatação de Planilhas</h3>
-                    <p>Formatação de células, bordas, cores, mesclar células e formatação de números.</p>
+                <div class="topico-item">
+                    <h3>Atividade 03: Estética (online) - orientação manual</h3>
+                    <p>Aprenda a deixar suas planilhas visualmente atraentes e profissionais.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Planilha para Formatar</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 04 - Criando Gráficos</h3>
-                    <p>Transforme seus dados em gráficos de colunas, linhas e pizza.</p>
+                <div class="topico-item">
+                    <h3>Gráficos (pizza inserir)</h3>
+                    <p>Transforme seus dados em gráficos de pizza impactantes.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Dados para Gráficos</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 05 - Projeto: Controle Financeiro Pessoal</h3>
-                    <p>Crie uma planilha para controlar suas receitas e despesas mensais.</p>
-                    <a href="#" class="btn-link">📥 Modelo da Planilha</a>
-                    <a href="#" class="btn-link">📋 Instruções do Projeto</a>
+                <div class="topico-item">
+                    <h3>Atividade 04: Pagamento familiar, estoque</h3>
+                    <p>Fórmulas: soma, se, multiplicação, subtração, contadores, máximo, mínimo, média.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Planilha Modelo</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Guia layout da página - margens, orientação, tamanho, quebras, área de impressão, plano de fundo</h3>
+                    <p>Configure suas planilhas para impressão perfeita.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Guia fórmulas - mostrar fórmulas</h3>
+                    <p>Aprenda a visualizar e auditar fórmulas nas suas planilhas.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Atividade biblioteca - Fórmulas: dias360, procv, se, %</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Atividade biblioteca - Fórmulas: dias360, procv, se</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Atividade 08 - Fórmulas: somase, soma, multiplicação</h3>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Atividade 07 (Avançar) - não será impressa, trabalhando com arquivo</h3>
+                    <p>Fórmulas: treino de todas já aplicadas.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Proteger planilha, proteger pasta de trabalho, converter em PDF</h3>
+                    <p>Aprenda a proteger e compartilhar suas planilhas com segurança.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Revisão teórica e prática</h3>
+                    <a href="#" class="btn-link">📋 Baixar Exercício de Revisão</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Avaliação teórica e prática - utilizar da ferramenta Google formulário</h3>
+                    <a href="#" class="btn-link">📋 Acessar Formulário de Avaliação</a>
                 </div>
             </div>
 
             <!-- SEÇÃO POWERPOINT -->
             <div id="powerpoint" class="section">
-                <h2 style="color: #1e3c72; margin-bottom: 20px;">📽️ Aulas de PowerPoint</h2>
+                <div class="modulo-header">
+                    <h2>📽️ Microsoft PowerPoint 2016</h2>
+                    <p>Crie apresentações que impressionam!</p>
+                </div>
 
-                <div class="aula-item">
-                    <h3>Aula 01 - Introdução ao PowerPoint</h3>
-                    <p>Criando sua primeira apresentação, inserindo slides e textos.</p>
+                <div class="topico-item">
+                    <h3>Introdução ao Microsoft Power Point, criação de slides (layout, design e inserir)</h3>
+                    <p>Conheça a interface, crie seus primeiros slides com layouts profissionais e aprenda sobre design e inserção de elementos.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
                     <a href="#" class="btn-link">📋 Template para Praticar</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 02 - Design e Layouts</h3>
-                    <p>Escolhendo temas, cores, layouts e personalizando sua apresentação.</p>
+                <div class="topico-item">
+                    <h3>Hiperlink e guias: transição, animações e apresentação de slides</h3>
+                    <p>Criação de slides, tema livre.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Exercício de Design</a>
+                    <a href="#" class="btn-link">📋 Exercício Prático</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 03 - Imagens e Animações</h3>
-                    <p>Inserindo imagens, formas e aplicando animações aos elementos.</p>
+                <div class="topico-item">
+                    <h3>Marketing pessoal (google fotos) - Impressões</h3>
+                    <p>Crie uma apresentação profissional sobre você mesmo usando conceitos de marketing pessoal.</p>
                     <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Imagens para Usar</a>
+                    <a href="#" class="btn-link">📋 Guia do Projeto</a>
                 </div>
 
-                <div class="aula-item">
-                    <h3>Aula 04 - Projeto Final: Apresentação sobre Profissões</h3>
-                    <p>Crie uma apresentação sobre a profissão que você gostaria de seguir.</p>
-                    <a href="#" class="btn-link">📥 Modelo de Apresentação</a>
-                    <a href="#" class="btn-link">📋 Instruções do Projeto</a>
+                <div class="topico-item">
+                    <h3>Gráficos e tabelas - Salvando em pdf e Apresentação de slides do PowerPoint</h3>
+                    <p>Aprenda a inserir gráficos, criar tabelas e salvar sua apresentação em diferentes formatos.</p>
+                    <a href="#" class="btn-link">📥 Baixar Material</a>
+                </div>
+
+                <div class="topico-item">
+                    <h3>Avaliação teórica e prática - utilizar da ferramenta Google formulário (em arquivo, não ser impresso, trabalhar com slide de apresentação)</h3>
+                    <a href="#" class="btn-link">📋 Acessar Formulário de Avaliação</a>
                 </div>
             </div>
 
             <!-- SEÇÃO ENTREGAS -->
             <div id="entregas" class="section">
-                <h2 style="color: #1e3c72; margin-bottom: 20px;">📤 Entregar Trabalhos</h2>
+                <div class="modulo-header">
+                    <h2>📤 Entregar Trabalhos</h2>
+                    <p>Envie suas atividades de forma simples e rápida!</p>
+                </div>
                 
                 <div class="destaque">
                     <strong>⚠️ ATENÇÃO:</strong> Antes de enviar, certifique-se de que:
@@ -453,60 +560,54 @@
                         <li>O arquivo está salvo corretamente</li>
                         <li>O nome do arquivo segue o padrão: SeuNome_Turma_NomeDaAtividade</li>
                         <li>Você preencheu todos os campos obrigatórios</li>
+                        <li>Conferiu se é o arquivo correto antes de enviar</li>
                     </ul>
                 </div>
 
-                <div class="aula-item" style="text-align: center; padding: 40px;">
-                    <h3 style="margin-bottom: 20px;">Formulário de Entrega</h3>
-                    <p style="margin-bottom: 30px;">Clique no botão abaixo para acessar o formulário de entrega de trabalhos.</p>
+                <div class="topico-item" style="text-align: center; padding: 40px;">
+                    <h3 style="margin-bottom: 20px;">📋 Formulário de Entrega</h3>
+                    <p style="margin-bottom: 30px;">Clique no botão abaixo para acessar o formulário e enviar seus trabalhos.</p>
                     <a href="https://docs.google.com/forms" target="_blank" class="btn-link btn-submit" style="font-size: 1.2em; padding: 15px 40px;">
                         📤 ACESSAR FORMULÁRIO DE ENTREGA
                     </a>
                     <p style="margin-top: 20px; color: #666; font-size: 0.9em;">
-                        O formulário abre em uma nova aba. Você não precisa ter conta no Google para enviar.
+                        O formulário abre em uma nova aba. Você não precisa ter conta no Google para enviar! 😊
                     </p>
                 </div>
 
                 <div class="card" style="margin-top: 30px;">
-                    <h3>📋 Trabalhos que podem ser entregues:</h3>
+                    <h3>📋 Tipos de trabalhos aceitos:</h3>
                     <ul style="margin-top: 15px; line-height: 2;">
-                        <li>✏️ Exercícios de Windows</li>
-                        <li>📝 Documentos do Word</li>
-                        <li>📊 Planilhas do Excel</li>
-                        <li>📽️ Apresentações do PowerPoint</li>
-                        <li>🎯 Projetos finais</li>
+                        <li>✏️ Exercícios práticos de Windows</li>
+                        <li>📝 Documentos do Word (.docx ou .pdf)</li>
+                        <li>📊 Planilhas do Excel (.xlsx ou .pdf)</li>
+                        <li>📽️ Apresentações do PowerPoint (.pptx ou .pdf)</li>
+                        <li>🎯 Projetos e avaliações</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <footer>
-            <p>💻 Informática Básica | Professor [Seu Nome]</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">Dúvidas? Fale comigo na sala de aula ou deixe uma mensagem no formulário de entregas</p>
+            <p>💻 Informática Profissionalizante | Professora Renata</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Dúvidas? Vamos conversar na sala de aula ou deixe uma mensagem no formulário! 😊</p>
         </footer>
     </div>
 
     <script>
         function showSection(sectionId) {
-            // Oculta todas as seções
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
 
-            // Remove classe active de todos os botões
             const buttons = document.querySelectorAll('nav button');
             buttons.forEach(button => {
                 button.classList.remove('active');
             });
 
-            // Mostra a seção selecionada
             document.getElementById(sectionId).classList.add('active');
-
-            // Adiciona classe active ao botão clicado
             event.target.classList.add('active');
-
-            // Scroll suave para o topo
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
