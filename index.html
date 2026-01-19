@@ -155,30 +155,37 @@
             margin-bottom: 10px;
         }
 
-        .topico-item {
+        .modulo-content {
             background: white;
             border: 2px solid #e0e0e0;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            transition: all 0.3s;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
         }
 
-        .topico-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
-        }
-
-        .topico-item h3 {
-            color: #1e3c72;
-            margin-bottom: 12px;
-            font-size: 1.2em;
-        }
-
-        .topico-item p {
+        .modulo-content p {
             color: #666;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+
+        .btn-drive {
+            display: inline-block;
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(66, 133, 244, 0.3);
+        }
+
+        .btn-drive:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(66, 133, 244, 0.5);
         }
 
         .btn-link {
@@ -220,6 +227,77 @@
             color: #856404;
         }
 
+        .dica-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .dica-box strong {
+            color: #2e7d32;
+        }
+
+        .conteudo-lista {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+        }
+
+        .conteudo-lista h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .conteudo-lista ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .conteudo-lista li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .conteudo-lista li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .topico-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .topico-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .topico-item h3 {
+            color: #1e3c72;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .topico-item p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
         footer {
             background: #1e3c72;
             color: white;
@@ -228,25 +306,9 @@
             margin-top: 40px;
         }
 
-        ul.conteudo-lista {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul.conteudo-lista li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        ul.conteudo-lista li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #28a745;
-            font-weight: bold;
+        .icon-grande {
+            font-size: 4em;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -271,7 +333,7 @@
             <div id="inicio" class="section active">
                 <div class="welcome-box">
                     <h2>🎉 Seja bem-vindo(a)!</h2>
-                    <p> Este é o nosso cantinho virtual onde a tecnologia se torna simples, divertida e cheia de possibilidades! </p>
+                    <p>Este é o nosso cantinho virtual onde a tecnologia se torna simples, divertida e cheia de possibilidades!</p>
                     <p style="margin-top: 15px;">Aqui você encontra tudo que precisa: materiais, exercícios e um espaço especial para enviar seus trabalhos. Bora começar? 🚀</p>
                 </div>
 
@@ -294,6 +356,10 @@
                     <strong>📌 IMPORTANTE:</strong> Salve seus trabalhos com o seguinte padrão de nome: <strong>SeuNome_Turma_NomeDaAtividade</strong>
                     <br>Exemplo: MariaSilva_TurmaA_ExercicioWord01
                 </div>
+
+                <div class="dica-box">
+                    <strong>💡 COMO FUNCIONA:</strong> Clique no módulo desejado (Windows, Word, Excel ou PowerPoint) e depois em "Acessar Materiais". Uma pasta do Google Drive vai abrir com todos os arquivos daquele módulo. É só clicar no arquivo e baixar!
+                </div>
             </div>
 
             <!-- SEÇÃO WINDOWS -->
@@ -303,56 +369,29 @@
                     <p>Domine o sistema operacional mais utilizado no mundo!</p>
                 </div>
 
-                <div class="topico-item">
-                    <h3>Capítulo I - Conhecendo o computador</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
+                <div class="modulo-content">
+                    <div class="icon-grande">🪟</div>
+                    
+                    <div class="conteudo-lista">
+                        <h4>📋 Conteúdos deste módulo:</h4>
+                        <ul>
+                            <li>Capítulo I - Conhecendo o computador</li>
+                            <li>Capítulo II - Tela inicial | Capítulo III - Painel de controle</li>
+                            <li>Capítulo IV - Organização de arquivos e pastas</li>
+                            <li>Capítulo V - Teclado | Capítulo VI - WordPad</li>
+                            <li>Capítulo VII - Clipchamp</li>
+                            <li>Capítulo VIII - Gmail</li>
+                            <li>Capítulo IX - Compactar e descompactar arquivos (ZIP)</li>
+                            <li>Capítulo X - Rede social</li>
+                            <li>Revisão teórica e prática</li>
+                        </ul>
+                    </div>
 
-                <div class="topico-item">
-                    <h3>Capítulo II - Ligar e desligar | Capítulo III - Painel de controle</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Capítulo IV - Organização de arquivos e pastas no computador</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Capítulo VI - WordPad</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Capítulo VII - Clipboard</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Capítulo VIII - Compactar e descompactar arquivos (ARQUIVO ZIP)</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Capítulo X - Rede social</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Revisão teórica e prática</h3>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Avaliação teórica e prática</h3>
-                    <p>Momento de mostrar tudo que você aprendeu!</p>
+                    <p>Clique no botão abaixo para acessar todos os materiais e exercícios de Windows 10:</p>
+                    
+                    <a href="https://drive.google.com/drive/folders/1WJzzlerVnkrfKVzXrepuJAPiVPMIe-2t?usp=sharing" target="_blank" class="btn-drive">
+                        📁 ACESSAR MATERIAIS DE WINDOWS
+                    </a>
                 </div>
             </div>
 
@@ -363,53 +402,30 @@
                     <p>Crie documentos profissionais com facilidade!</p>
                 </div>
 
-                <div class="topico-item">
-                    <h3>Introdução ao Microsoft Word, formatação de textos e apresentação das guias</h3>
-                    <ul class="conteudo-lista">
-                        <li>Conhecendo a interface do Word</li>
-                        <li>Formatação básica de textos</li>
-                        <li>Explorando as guias e ferramentas</li>
-                    </ul>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
+                <div class="modulo-content">
+                    <div class="icon-grande">📝</div>
+                    
+                    <div class="conteudo-lista">
+                        <h4>📋 Conteúdos deste módulo:</h4>
+                        <ul>
+                            <li>Introdução ao Word, formatação de textos e guias</li>
+                            <li>Criação de tabelas e formatação (Guia Design)</li>
+                            <li>Carta comercial, procurações, jornal mural</li>
+                            <li>Cabeçalho, rodapé, configuração de página</li>
+                            <li>Marca d'água, número de página</li>
+                            <li>Ilustrações (Smart Art)</li>
+                            <li>Imagens (Guia Inserir e ferramentas)</li>
+                            <li>Curriculum (criação e formatação)</li>
+                            <li>Formatação ABNT</li>
+                            <li>Revisão teórica e prática</li>
+                        </ul>
+                    </div>
 
-                <div class="topico-item">
-                    <h3>Criação de tabelas e formatação</h3>
-                    <p>Aprenda a criar e formatar tabelas profissionais: alinhamento, cor da linha, página, quebra de página, marca d'água, número de página).</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Ilustrações (Smart art)</h3>
-                    <p>Crie diagramas e gráficos visuais incríveis com Smart Art.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Imagens (cole inserir e ferramentas de imagens)</h3>
-                    <p>Domine a inserção e edição de imagens nos seus documentos.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Carta comercial, procurações, jornal mural (cabeçalho e rodapé)</h3>
-                    <p>Crie documentos oficiais e profissionais com configuração adequada.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Revisão teórica e prática - utilizar da ferramenta Google formulário</h3>
-                    <a href="#" class="btn-link">📋 Acessar Formulário</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Avaliação teórica e prática</h3>
-                    <p>Hora de demonstrar todo seu conhecimento!</p>
+                    <p>Clique no botão abaixo para acessar todos os materiais e exercícios de Word 2016:</p>
+                    
+                    <a href="https://drive.google.com/drive/folders/1tKzRhjNIECaLXkqTFqxD3S3VTnlAMrs0?usp=sharing" target="_blank" class="btn-drive">
+                        📁 ACESSAR MATERIAIS DE WORD
+                    </a>
                 </div>
             </div>
 
@@ -420,90 +436,31 @@
                     <p>Transforme dados em informações valiosas!</p>
                 </div>
 
-                <div class="topico-item">
-                    <h3>Introdução ao Microsoft Excel - Atividade 01</h3>
-                    <p>Conheça a interface, células, linhas, colunas e navegação básica. Fórmulas: soma, multiplicação, divisão e subtração. Classificação de dados.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Planilha para Praticar</a>
-                </div>
+                <div class="modulo-content">
+                    <div class="icon-grande">📊</div>
+                    
+                    <div class="conteudo-lista">
+                        <h4>📋 Conteúdos deste módulo:</h4>
+                        <ul>
+                            <li>Introdução ao Excel - Fórmulas básicas (soma, subtração, multiplicação, divisão)</li>
+                            <li>Classificação de dados, inserir e excluir linhas</li>
+                            <li>Formatação necessária - Média, SE, máximo, mínimo</li>
+                            <li>Formatação condicional</li>
+                            <li>Inserção de imagens, trabalhando com percentual</li>
+                            <li>Gráficos (Guia Inserir)</li>
+                            <li>Finanças: livro caixa, estoque (contadores)</li>
+                            <li>Guia Layout da página (margens, orientação, impressão)</li>
+                            <li>Fórmulas: DIAS360, PROCV, SOMASE</li>
+                            <li>Proteger planilha, converter em PDF</li>
+                            <li>Revisão teórica e prática</li>
+                        </ul>
+                    </div>
 
-                <div class="topico-item">
-                    <h3>Atividade 02: Formatação necessária</h3>
-                    <p>Fórmulas: média, SE, máximo, mínimo. Formatação condicional.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="https://docs.google.com/spreadsheets/d/1jpbasWIg0rjl9aqEu8Mgrklo2CvMByEV/edit?usp=sharing&ouid=105845554419631251480&rtpof=true&sd=true" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Atividade 03: Estética (online) - orientação manual</h3>
-                    <p>Aprenda a deixar suas planilhas visualmente atraentes e profissionais.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Gráficos (pizza inserir)</h3>
-                    <p>Transforme seus dados em gráficos de pizza impactantes.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Dados para Gráficos</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Atividade 04: Pagamento familiar, estoque</h3>
-                    <p>Fórmulas: soma, se, multiplicação, subtração, contadores, máximo, mínimo, média.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Planilha Modelo</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Guia layout da página - margens, orientação, tamanho, quebras, área de impressão, plano de fundo</h3>
-                    <p>Configure suas planilhas para impressão perfeita.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Guia fórmulas - mostrar fórmulas</h3>
-                    <p>Aprenda a visualizar e auditar fórmulas nas suas planilhas.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Atividade biblioteca - Fórmulas: dias360, procv, se, %</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Atividade biblioteca - Fórmulas: dias360, procv, se</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Atividade 08 - Fórmulas: somase, soma, multiplicação</h3>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Baixar Exercício</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Atividade 07 (Avançar) - não será impressa, trabalhando com arquivo</h3>
-                    <p>Fórmulas: treino de todas já aplicadas.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Proteger planilha, proteger pasta de trabalho, converter em PDF</h3>
-                    <p>Aprenda a proteger e compartilhar suas planilhas com segurança.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Revisão teórica e prática</h3>
-                    <a href="#" class="btn-link">📋 Baixar Exercício de Revisão</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Avaliação teórica e prática - utilizar da ferramenta Google formulário</h3>
-                    <a href="#" class="btn-link">📋 Acessar Formulário de Avaliação</a>
+                    <p>Clique no botão abaixo para acessar todos os materiais e exercícios de Excel 2016:</p>
+                    
+                    <a href="https://drive.google.com/drive/folders/1U7Y-PDYujqI3i9AIBdNPk_KfIbn0DXev?usp=sharing" target="_blank" class="btn-drive">
+                        📁 ACESSAR MATERIAIS DE EXCEL
+                    </a>
                 </div>
             </div>
 
@@ -514,36 +471,29 @@
                     <p>Crie apresentações que impressionam!</p>
                 </div>
 
-                <div class="topico-item">
-                    <h3>Introdução ao Microsoft Power Point, criação de slides (layout, design e inserir)</h3>
-                    <p>Conheça a interface, crie seus primeiros slides com layouts profissionais e aprenda sobre design e inserção de elementos.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Template para Praticar</a>
-                </div>
+                <div class="modulo-content">
+                    <div class="icon-grande">📽️</div>
+                    
+                    <div class="conteudo-lista">
+                        <h4>📋 Conteúdos deste módulo:</h4>
+                        <ul>
+                            <li>Introdução ao PowerPoint - Criação de slides</li>
+                            <li>Guias: Layout, Design e Inserir</li>
+                            <li>Hiperlink</li>
+                            <li>Guias: Transição, Animações e Apresentação de slides</li>
+                            <li>Marketing pessoal (Google Fotos)</li>
+                            <li>Impressões</li>
+                            <li>Gráficos e tabelas</li>
+                            <li>Salvando em PDF</li>
+                            <li>Avaliação teórica e prática</li>
+                        </ul>
+                    </div>
 
-                <div class="topico-item">
-                    <h3>Hiperlink e guias: transição, animações e apresentação de slides</h3>
-                    <p>Criação de slides, tema livre.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Exercício Prático</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Marketing pessoal (google fotos) - Impressões</h3>
-                    <p>Crie uma apresentação profissional sobre você mesmo usando conceitos de marketing pessoal.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                    <a href="#" class="btn-link">📋 Guia do Projeto</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Gráficos e tabelas - Salvando em pdf e Apresentação de slides do PowerPoint</h3>
-                    <p>Aprenda a inserir gráficos, criar tabelas e salvar sua apresentação em diferentes formatos.</p>
-                    <a href="#" class="btn-link">📥 Baixar Material</a>
-                </div>
-
-                <div class="topico-item">
-                    <h3>Avaliação teórica e prática - utilizar da ferramenta Google formulário (em arquivo, não ser impresso, trabalhar com slide de apresentação)</h3>
-                    <a href="#" class="btn-link">📋 Acessar Formulário de Avaliação</a>
+                    <p>Clique no botão abaixo para acessar todos os materiais e exercícios de PowerPoint 2016:</p>
+                    
+                    <a href="https://drive.google.com/drive/folders/1U5H4eh4i30BxRI9j5lJL41PL8L2gUL7V?usp=sharing" target="_blank" class="btn-drive">
+                        📁 ACESSAR MATERIAIS DE POWERPOINT
+                    </a>
                 </div>
             </div>
 
@@ -558,7 +508,7 @@
                     <strong>⚠️ ATENÇÃO:</strong> Antes de enviar, certifique-se de que:
                     <ul style="margin-top: 10px; margin-left: 20px;">
                         <li>O arquivo está salvo corretamente</li>
-                        <li>O nome do arquivo segue o padrão: SeuNome_Turma_NomeDaAtividade</li>
+                        <li>O nome do arquivo segue o padrão: <strong>SeuNome_Turma_NomeDaAtividade</strong></li>
                         <li>Você preencheu todos os campos obrigatórios</li>
                         <li>Conferiu se é o arquivo correto antes de enviar</li>
                     </ul>
