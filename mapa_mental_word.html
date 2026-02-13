@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental - Word 2016 | ABTEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .mind-map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .central-node {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 30px 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4);
+            animation: pulse 2s infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .central-node:hover {
+            transform: scale(1.05);
+        }
+
+        .central-node h2 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .central-node span {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 20px 80px rgba(124, 58, 237, 0.6); }
+        }
+
+        .branches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .branch {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .branch-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .branch-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .branch-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .branch-title h3 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .branch-title span {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .expand-icon {
+            margin-left: auto;
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .branch.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .branch-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .branch.active .branch-content {
+            max-height: 1000px;
+        }
+
+        .branch-items {
+            padding: 20px;
+        }
+
+        .branch-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border-left: 3px solid;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .branch-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        .branch-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .branch-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .branch-item p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        .aba-inserir .branch-icon { background: linear-gradient(135deg, #10b981, #059669); }
+        .aba-inserir .branch-item { border-color: #10b981; }
+        
+        .aba-inicio .branch-icon { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .aba-inicio .branch-item { border-color: #f97316; }
+        
+        .aba-revisao .branch-icon { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .aba-revisao .branch-item { border-color: #8b5cf6; }
+        
+        .aba-layout .branch-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .aba-layout .branch-item { border-color: #3b82f6; }
+        
+        .atalhos .branch-icon { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .atalhos .branch-item { border-color: #ec4899; }
+        
+        .importante .branch-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .importante .branch-item { border-color: #ef4444; }
+
+        .quiz-section {
+            margin-top: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .quiz-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: #f472b6;
+        }
+
+        .quiz-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .quiz-card.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.3);
+            border-color: #10b981;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: #ef4444;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .quiz-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quiz-btn.primary {
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            color: white;
+        }
+
+        .quiz-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .score-display span {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #f472b6);
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .result-card.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .result-emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .result-text {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #10b981, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .restart-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .central-node {
+                padding: 20px 30px;
+            }
+            .central-node h2 {
+                font-size: 1.5rem;
+            }
+            .branches {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 MAPA MENTAL INTERATIVO</h1>
+            <p>Microsoft Word 2016 - Revisão para Avaliação | ABTEC Cursos Profissionalizantes</p>
+        </header>
+
+        <div class="mind-map">
+            <div class="central-node" onclick="toggleAll()">
+                <h2>MICROSOFT WORD 2016</h2>
+                <span>Processador de Textos</span>
+            </div>
+
+            <div class="branches">
+                <div class="branch aba-inserir">
+                    <div class="branch-header" onclick="toggleBranch(this)">
+                        <div class="branch-icon">📎</div>
+                        <div class="branch-title">
+                            <h3>Aba INSERIR</h3>
+                            <span>Adicionar elementos ao documento</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-items">
+                            <div class="branch-item">
+                                <strong>Tabelas</strong>
+                                <p>Criar tabelas para organizar dados</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Imagens e Formas</strong>
+                                <p>Inserir fotos, ClipArt, formas geométricas</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Cabeçalho e Rodapé</strong>
+                                <p>Elementos que aparecem em todas as páginas</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Símbolos e Equações</strong>
+                                <p>Caracteres especiais e fórmulas matemáticas</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>WordArt</strong>
+                                <p>Texto decorativo com efeitos especiais</p>
+                            </div>
+                            <div class="branch-item" style="background: rgba(239, 68, 68, 0.2);">
+                                <strong>⚠️ ZOOM NÃO ESTÁ AQUI!</strong>
+                                <p>Zoom está na aba EXIBIR, não na aba Inserir!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch aba-inicio">
+                    <div class="branch-header" onclick="toggleBranch(this)">
+                        <div class="branch-icon">🏠</div>
+                        <div class="branch-title">
+                            <h3>Aba PÁGINA INICIAL</h3>
+                            <span>Formatação básica de texto</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-items">
+                            <div class="branch-item">
+                                <strong>Fonte</strong>
+                                <p>Tipo, tamanho, cor, negrito, itálico, sublinhado</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Parágrafo</strong>
+                                <p>Alinhamento, espaçamento, recuos</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Marcadores e Numeração</strong>
+                                <p>Listas com bolinhas ou números</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Estilos</strong>
+                                <p>Formatações predefinidas (Título 1, Normal...)</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Área de Transferência</strong>
+                                <p>Copiar, Colar, Colar Especial, Recortar</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Localizar e Substituir</strong>
+                                <p>Encontrar e trocar palavras no documento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch aba-revisao">
+                    <div class="branch-header" onclick="toggleBranch(this)">
+                        <div class="branch-icon">✅</div>
+                        <div class="branch-title">
+                            <h3>Aba REVISÃO</h3>
+                            <span>Correção e verificação</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-items">
+                            <div class="branch-item" style="background: rgba(16, 185, 129, 0.2);">
+                                <strong>⭐ Ortografia e Gramática</strong>
+                                <p>Verificação de erros - CAI NA PROVA!</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Dicionário de Sinônimos</strong>
+                                <p>Encontrar palavras com significado similar</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Contar Palavras</strong>
+                                <p>Estatísticas do documento</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Comentários</strong>
+                                <p>Adicionar observações ao texto</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Controlar Alterações</strong>
+                                <p>Marcar modificações feitas no documento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch aba-layout">
+                    <div class="branch-header" onclick="toggleBranch(this)">
+                        <div class="branch-icon">📐</div>
+                        <div class="branch-title">
+                            <h3>Aba LAYOUT</h3>
+                            <span>Configuração da página</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-items">
+                            <div class="branch-item">
+                                <strong>Margens</strong>
+                                <p>Espaço entre texto e bordas da página</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Orientação</strong>
+                                <p>Retrato (vertical) ou Paisagem (horizontal)</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Tamanho do Papel</strong>
+                                <p>A4, Carta, Ofício, etc.</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Colunas</strong>
+                                <p>Dividir texto em múltiplas colunas</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Quebras</strong>
+                                <p>Quebra de página, seção, coluna</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch atalhos">
+                    <div class="branch-header" onclick="toggleBranch(this)">
+                        <div class="branch-icon">⌨️</div>
+                        <div class="branch-title">
+                            <h3>Atalhos do Teclado</h3>
+                            <span>Teclas de atalho essenciais</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-items">
+                            <div class="branch-item">
+                                <strong>Ctrl + C / Ctrl + V / Ctrl + X</strong>
+                                <p>Copiar / Colar / Recortar</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Ctrl + N / Ctrl + I / Ctrl + S</strong>
+                                <p>Negrito / Itálico / Sublinhado</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Ctrl + Z / Ctrl + Y</strong>
+                                <p>Desfazer / Refazer</p>
+                            </div>
+                            <div class="branch-item" style="background: rgba(16, 185, 129, 0.2);">
+                                <strong>Ctrl + = (Subscrito)</strong>
+                                <p>Texto abaixo da linha: H₂O</p>
+                            </div>
+                            <div class="branch-item" style="background: rgba(16, 185, 129, 0.2);">
+                                <strong>Ctrl + Shift + = (Sobrescrito)</strong>
+                                <p>Texto acima da linha: m², x³</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Ctrl + A</strong>
+                                <p>Selecionar todo o documento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch importante">
+                    <div class="branch-header" onclick="toggleBranch(this)">
+                        <div class="branch-icon">🎯</div>
+                        <div class="branch-title">
+                            <h3>IMPORTANTE NA PROVA</h3>
+                            <span>Pontos que mais caem!</span>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="branch-content">
+                        <div class="branch-items">
+                            <div class="branch-item">
+                                <strong>Word = Textos + Documentos + Tabelas</strong>
+                                <p>NÃO é para páginas da Internet ou JPG!</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>ZOOM está na aba EXIBIR</strong>
+                                <p>Não confundir com aba Inserir!</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Ortografia = Aba REVISÃO</strong>
+                                <p>Não está em Página Inicial nem Exibição</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Cabeçalhos diferentes = SEÇÕES</strong>
+                                <p>Criar seções ANTES de alterar cabeçalho</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Word tem FÓRMULAS em tabelas</strong>
+                                <p>=SUM(ABOVE) funciona no Word, sem Excel!</p>
+                            </div>
+                            <div class="branch-item">
+                                <strong>Colar Especial → Texto não formatado</strong>
+                                <p>Remove TODA formatação do texto colado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-section">
+            <h2>📝 QUIZ DE REVISÃO</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+
+            <div class="quiz-card active" data-question="0">
+                <p class="quiz-question">1. Na aba "Inserir" temos as opções, <strong>EXCETO</strong>:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">a) Quebra</div>
+                    <div class="quiz-option" data-correct="false">b) Símbolo</div>
+                    <div class="quiz-option" data-correct="true">c) Zoom</div>
+                    <div class="quiz-option" data-correct="false">d) Figura</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="1">
+                <p class="quiz-question">2. A verificação de Ortografia e Gramática é acessada através de qual aba?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="true">a) Revisão</div>
+                    <div class="quiz-option" data-correct="false">b) Exibição</div>
+                    <div class="quiz-option" data-correct="false">c) Destinatário</div>
+                    <div class="quiz-option" data-correct="false">d) Página Inicial</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="2">
+                <p class="quiz-question">3. Em relação ao Word podemos afirmar que:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">a) É um aplicativo para gerenciamento de arquivos</div>
+                    <div class="quiz-option" data-correct="false">b) Cria páginas da Internet e arquivos JPG</div>
+                    <div class="quiz-option" data-correct="true">c) É para criação de textos, documentos e tabelas</div>
+                    <div class="quiz-option" data-correct="false">d) É específico para montagem de apresentações</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="3">
+                <p class="quiz-question">4. Qual ícone representa o <strong>SUBSCRITO</strong> (texto abaixo da linha)?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">a) X²</div>
+                    <div class="quiz-option" data-correct="true">b) X₂</div>
+                    <div class="quiz-option" data-correct="false">c) abc</div>
+                    <div class="quiz-option" data-correct="false">d) ABC</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="4">
+                <p class="quiz-question">5. Para ter cabeçalhos diferentes em páginas distintas, o que deve ser feito ANTES?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">a) Alterar as margens</div>
+                    <div class="quiz-option" data-correct="false">b) Mudar a orientação da página</div>
+                    <div class="quiz-option" data-correct="true">c) Configurar seções diferentes</div>
+                    <div class="quiz-option" data-correct="false">d) Inserir quebra de página</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="5">
+                <p class="quiz-question">6. É possível calcular totais em tabelas do Word sem usar o Excel?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="true">a) Sim, usando fórmulas como =SUM(ABOVE)</div>
+                    <div class="quiz-option" data-correct="false">b) Não, apenas o Excel faz cálculos</div>
+                    <div class="quiz-option" data-correct="false">c) Somente se exportar para Excel primeiro</div>
+                    <div class="quiz-option" data-correct="false">d) Apenas com complementos instalados</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="6">
+                <p class="quiz-question">7. O atalho <strong>Ctrl + Shift + =</strong> serve para:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="false">a) Subscrito</div>
+                    <div class="quiz-option" data-correct="true">b) Sobrescrito</div>
+                    <div class="quiz-option" data-correct="false">c) Aumentar fonte</div>
+                    <div class="quiz-option" data-correct="false">d) Diminuir fonte</div>
+                </div>
+            </div>
+
+            <div class="quiz-card" data-question="7">
+                <p class="quiz-question">8. A opção "Colar especial → Texto não formatado" faz com que:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-correct="true">a) O texto perde toda a formatação original</div>
+                    <div class="quiz-option" data-correct="false">b) O texto vira uma imagem</div>
+                    <div class="quiz-option" data-correct="false">c) O texto mantém a formatação original</div>
+                    <div class="quiz-option" data-correct="false">d) O documento inteiro perde formatação</div>
+                </div>
+            </div>
+
+            <div class="result-card" id="resultCard">
+                <div class="result-emoji" id="resultEmoji">🎉</div>
+                <p class="result-text">Você acertou</p>
+                <p class="result-score"><span id="finalScore">0</span>/8 questões!</p>
+                <p id="resultMessage" style="margin-top: 15px; color: #94a3b8;"></p>
+                <button class="quiz-btn primary restart-btn" onclick="restartQuiz()">Tentar Novamente</button>
+            </div>
+
+            <div class="quiz-navigation" id="quizNav">
+                <button class="quiz-btn primary" id="prevBtn" onclick="prevQuestion()" disabled>← Anterior</button>
+                <div class="score-display">Pontuação: <span id="currentScore">0</span>/8</div>
+                <button class="quiz-btn primary" id="nextBtn" onclick="nextQuestion()" disabled>Próxima →</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>ABTEC Cursos Profissionalizantes - Piracicaba/SP</p>
+            <p>Material de Revisão - Word 2016</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleBranch(header) {
+            const branch = header.parentElement;
+            branch.classList.toggle('active');
+        }
+
+        function toggleAll() {
+            const branches = document.querySelectorAll('.branch');
+            const allActive = Array.from(branches).every(b => b.classList.contains('active'));
+            branches.forEach(b => {
+                if (allActive) {
+                    b.classList.remove('active');
+                } else {
+                    b.classList.add('active');
+                }
+            });
+        }
+
+        // Quiz Logic
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = new Array(8).fill(false);
+        const totalQuestions = 8;
+
+        function selectOption(option) {
+            if (answered[currentQuestion]) return;
+            
+            const options = option.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.add('disabled');
+                if (opt.dataset.correct === 'true') {
+                    opt.classList.add('correct');
+                } else if (opt === option && opt.dataset.correct === 'false') {
+                    opt.classList.add('incorrect');
+                }
+            });
+
+            if (option.dataset.correct === 'true') {
+                score++;
+                document.getElementById('currentScore').textContent = score;
+            }
+
+            answered[currentQuestion] = true;
+            document.getElementById('nextBtn').disabled = false;
+            updateProgress();
+        }
+
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', () => selectOption(option));
+        });
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                document.querySelectorAll('.quiz-card')[currentQuestion].classList.remove('active');
+                currentQuestion++;
+                document.querySelectorAll('.quiz-card')[currentQuestion].classList.add('active');
+                document.getElementById('prevBtn').disabled = false;
+                document.getElementById('nextBtn').disabled = !answered[currentQuestion];
+                
+                if (currentQuestion === totalQuestions - 1 && answered[currentQuestion]) {
+                    document.getElementById('nextBtn').textContent = 'Ver Resultado';
+                }
+            } else if (answered[currentQuestion]) {
+                showResult();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                document.querySelectorAll('.quiz-card')[currentQuestion].classList.remove('active');
+                currentQuestion--;
+                document.querySelectorAll('.quiz-card')[currentQuestion].classList.add('active');
+                document.getElementById('nextBtn').disabled = false;
+                document.getElementById('nextBtn').textContent = 'Próxima →';
+                if (currentQuestion === 0) {
+                    document.getElementById('prevBtn').disabled = true;
+                }
+            }
+        }
+
+        function updateProgress() {
+            const answeredCount = answered.filter(a => a).length;
+            const percent = (answeredCount / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+
+        function showResult() {
+            document.querySelectorAll('.quiz-card').forEach(card => card.classList.remove('active'));
+            document.getElementById('quizNav').style.display = 'none';
+            document.getElementById('resultCard').classList.add('active');
+            document.getElementById('finalScore').textContent = score;
+
+            const emoji = document.getElementById('resultEmoji');
+            const message = document.getElementById('resultMessage');
+
+            if (score === 8) {
+                emoji.textContent = '🏆';
+                message.textContent = 'Perfeito! Você está preparado para a prova!';
+            } else if (score >= 6) {
+                emoji.textContent = '🎉';
+                message.textContent = 'Muito bem! Continue revisando os pontos que errou.';
+            } else if (score >= 4) {
+                emoji.textContent = '📚';
+                message.textContent = 'Bom progresso! Revise o mapa mental novamente.';
+            } else {
+                emoji.textContent = '💪';
+                message.textContent = 'Continue estudando! Releia o material com atenção.';
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = new Array(8).fill(false);
+            
+            document.getElementById('resultCard').classList.remove('active');
+            document.getElementById('quizNav').style.display = 'flex';
+            document.getElementById('currentScore').textContent = '0';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('prevBtn').disabled = true;
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('nextBtn').textContent = 'Próxima →';
+            
+            document.querySelectorAll('.quiz-card').forEach((card, index) => {
+                if (index === 0) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+                card.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect', 'disabled');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
