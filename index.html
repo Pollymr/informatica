@@ -5,445 +5,427 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Informática</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f0f13;
-      --surface: #17171e;
-      --surface2: #1e1e28;
-      --border: rgba(255,255,255,0.07);
-      --text: #e8e8f0;
-      --muted: #7b7b96;
+      --bg: #0b0b10;
+      --surface: #14141b;
+      --surface2: #1b1b25;
+      --border: rgba(255,255,255,0.08);
+      --text: #ececf4;
+      --muted: #8a8aa3;
       --accent: #6c63ff;
-      --accent2: #ff6584;
+      --accent2: #0ea5e9;
       --win: #0ea5e9;
       --word: #3b82f6;
       --excel: #22c55e;
       --ppt: #f97316;
-      --radius: 16px;
+      --radius: 24px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* HEADER */
-    header {
-      padding: 48px 24px 32px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    /* fundo com brilhos suaves */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
     }
-    header::before {
+    body::before {
+      width: 520px; height: 520px;
+      top: -180px; left: -120px;
+      background: rgba(108,99,255,0.22);
+    }
+    body::after {
+      width: 460px; height: 460px;
+      bottom: -200px; right: -120px;
+      background: rgba(14,165,233,0.10);
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* TOPO */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.2px;
+    }
+    .brand-dot {
+      width: 34px; height: 34px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: grid; place-items: center;
+      font-size: 1rem;
+    }
+    .nav-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      transition: background .2s;
+    }
+    .nav-link:hover { background: rgba(255,255,255,0.12); }
+
+    /* HERO */
+    .hero { padding: 40px 0 48px; max-width: 720px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #b9b5ff;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .eyebrow i {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+    h1 span {
+      background: linear-gradient(120deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* TÍTULOS DE SEÇÃO */
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .section-head h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .section-head span {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-bottom: 72px;
+    }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      --c: var(--accent);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-height: 230px;
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s;
+    }
+    .card.win   { --c: var(--win); }
+    .card.word  { --c: var(--word); }
+    .card.excel { --c: var(--excel); }
+    .card.ppt   { --c: var(--ppt); }
+
+    /* brilho que segue o mouse */
+    .card::before {
       content: '';
       position: absolute;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse, rgba(108,99,255,0.18) 0%, transparent 70%);
+      inset: 0;
+      z-index: -1;
+      opacity: 0;
+      background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%),
+        color-mix(in srgb, var(--c) 22%, transparent), transparent 60%);
+      transition: opacity .3s;
+    }
+    .card:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--c) 55%, transparent); }
+    .card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .icon {
+      width: 58px; height: 58px;
+      border-radius: 18px;
+      display: grid; place-items: center;
+      background: color-mix(in srgb, var(--c) 16%, transparent);
+      color: var(--c);
+      border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+    }
+    .icon svg { width: 28px; height: 28px; }
+
+    .arrow {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all .3s;
+    }
+    .arrow svg { width: 16px; height: 16px; transition: transform .3s; }
+    .card:hover .arrow { background: var(--c); border-color: var(--c); color: #fff; }
+    .card:hover .arrow svg { transform: rotate(45deg); }
+
+    .card-body { margin-top: auto; }
+    .card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .card p {
+      margin-top: 6px;
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    /* ENTREGA */
+    .cta {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding: 40px;
+      border-radius: 28px;
+      background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        linear-gradient(120deg, rgba(108,99,255,.7), rgba(14,165,233,.5)) border-box;
+      border: 1px solid transparent;
+      margin-bottom: 80px;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -90px; right: -60px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(108,99,255,.25), transparent 70%);
       pointer-events: none;
     }
-    header h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
+    .cta h2 {
+      font-size: 1.7rem;
       font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #fff 30%, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      letter-spacing: -0.03em;
     }
-    header p {
-      margin-top: 8px;
+    .cta p {
+      margin-top: 6px;
       color: var(--muted);
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
+      font-size: 0.97rem;
+      max-width: 420px;
     }
-
-    /* MAIN */
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
-
-    /* SECTION LABEL */
-    .label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-      padding-left: 2px;
-    }
-
-    /* MODULES GRID */
-    .modules {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-      margin-bottom: 48px;
-    }
-
-    .mod-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    .btn {
       position: relative;
-      overflow: hidden;
-    }
-    .mod-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      border-radius: var(--radius) var(--radius) 0 0;
-    }
-    .mod-card.win::after  { background: var(--win); }
-    .mod-card.word::after { background: var(--word); }
-    .mod-card.excel::after{ background: var(--excel); }
-    .mod-card.ppt::after  { background: var(--ppt); }
-
-    .mod-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-    }
-    .mod-card.win:hover  { border-color: var(--win); }
-    .mod-card.word:hover { border-color: var(--word); }
-    .mod-card.excel:hover{ border-color: var(--excel); }
-    .mod-card.ppt:hover  { border-color: var(--ppt); }
-
-    .mod-icon { font-size: 2rem; line-height: 1; }
-    .mod-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .mod-sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-    .mod-btn {
-      margin-top: auto;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 7px 14px;
-      border-radius: 8px;
-      width: fit-content;
-      transition: opacity 0.2s;
-    }
-    .mod-btn:hover { opacity: 0.85; }
-    .win  .mod-btn { background: rgba(14,165,233,0.15);  color: var(--win); }
-    .word .mod-btn { background: rgba(59,130,246,0.15);  color: var(--word); }
-    .excel .mod-btn{ background: rgba(34,197,94,0.15);   color: var(--excel); }
-    .ppt  .mod-btn { background: rgba(249,115,22,0.15);  color: var(--ppt); }
-
-    /* ENTREGA SECTION */
-    .entrega-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      margin-bottom: 48px;
-    }
-    .entrega-box h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .entrega-box .sub {
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-    @media (max-width: 540px) {
-      .form-row { grid-template-columns: 1fr; }
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .field label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .field input,
-    .field select,
-    .field textarea {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      padding: 11px 14px;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--accent);
-    }
-    .field select option { background: #1e1e28; }
-    .field textarea { resize: vertical; min-height: 80px; }
-
-    .field-full { margin-bottom: 14px; }
-
-    .notice-nome {
-      background: rgba(108,99,255,0.1);
-      border: 1px solid rgba(108,99,255,0.25);
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 0.82rem;
-      color: #a5a0ff;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .notice-nome strong { color: #d0cdff; }
-
-    /* STEPS */
-    .steps {
-      display: flex;
       gap: 10px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-    .step {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--surface2);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      flex: 1;
-      min-width: 160px;
-    }
-    .step-num {
-      width: 22px; height: 22px;
-      background: var(--accent);
+      padding: 15px 28px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--accent), #8b7dff);
       color: #fff;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.72rem;
+      font-family: inherit;
+      font-size: 0.97rem;
       font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 13px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    .form-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    /* BOTÃO ANEXO (link disfarçado) */
-    .btn-anexo {
-      background: var(--surface2);
-      color: var(--muted);
-      border: 1px dashed rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 11px 18px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-      margin-bottom: 14px;
-      width: 100%;
+      box-shadow: 0 10px 30px rgba(108,99,255,.35);
+      transition: transform .2s, box-shadow .2s;
     }
-    .btn-anexo:hover {
-      border-color: var(--excel);
-      color: var(--excel);
-      background: rgba(34,197,94,0.06);
-    }
-    .btn-anexo.ativo {
-      border-color: var(--excel);
-      color: var(--excel);
-      background: rgba(34,197,94,0.08);
-      border-style: solid;
-    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(108,99,255,.5); }
+    .btn svg { width: 18px; height: 18px; }
 
-    /* FEEDBACK STATES */
-    #form-feedback {
-      margin-top: 16px;
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-size: 0.88rem;
-      display: none;
-    }
-    #form-feedback.success {
-      display: block;
-      background: rgba(34,197,94,0.1);
-      border: 1px solid rgba(34,197,94,0.3);
-      color: #86efac;
-    }
-    #form-feedback.error {
-      display: block;
-      background: rgba(255,101,132,0.1);
-      border: 1px solid rgba(255,101,132,0.3);
-      color: #fca5a5;
-    }
-
-
-
-    /* FOOTER */
     footer {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      padding: 32px 20px;
+      padding: 28px 20px 40px;
       border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 0.82rem;
     }
 
-    /* DIVIDER */
-    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+    /* entrada suave */
+    @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+    .hero, .card, .cta { animation: up .6s cubic-bezier(.2,.8,.2,1) both; }
+    .card:nth-child(1) { animation-delay: .08s; }
+    .card:nth-child(2) { animation-delay: .14s; }
+    .card:nth-child(3) { animation-delay: .20s; }
+    .card:nth-child(4) { animation-delay: .26s; }
+    .cta { animation-delay: .32s; }
 
-    /* ANIMATION */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
-    .mod-card, .entrega-box, .upload-reminder {
-      animation: fadeUp 0.5s both;
+    @media (max-width: 560px) {
+      .cta { padding: 28px; }
+      .btn { width: 100%; justify-content: center; }
     }
-    .mod-card:nth-child(1) { animation-delay: 0.05s; }
-    .mod-card:nth-child(2) { animation-delay: 0.10s; }
-    .mod-card:nth-child(3) { animation-delay: 0.15s; }
-    .mod-card:nth-child(4) { animation-delay: 0.20s; }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Informática</h1>
-</header>
+<div class="wrap">
 
-<main>
+  <nav>
+    <div class="brand"><span class="brand-dot">💻</span> Informática</div>
+    <a href="#entrega" class="nav-link">Entregar atividade</a>
+  </nav>
 
-  <!-- MÓDULOS -->
-  <p class="label">Módulos do curso</p>
-  <div class="modules">
+  <section class="hero">
+    <h1>Informática</h1>
+  </section>
 
-    <a href="https://drive.google.com/drive/folders/1WJzzlerVnkrfKVzXrepuJAPiVPMIe-2t?usp=sharing"
-       target="_blank" class="mod-card win">
-      <div class="mod-icon">🪟</div>
-      <div>
-        <div class="mod-name">Windows 11</div>
-        <div class="mod-sub">Sistema operacional, arquivos e pastas</div>
+  <div class="section-head">
+    <h2>Módulos</h2>
+    <span>4 módulos</span>
+  </div>
+
+  <div class="grid">
+
+    <a class="card win" target="_blank" rel="noopener"
+       href="https://drive.google.com/drive/folders/1WJzzlerVnkrfKVzXrepuJAPiVPMIe-2t?usp=sharing">
+      <div class="card-top">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4.5 10.5 3.5V11H3V4.5Zm8.5-1.1L21 2v9h-9.5V3.4ZM3 12.5h7.5V20L3 19V12.5Zm8.5 0H21V22l-9.5-1.4v-8.1Z"/></svg>
+        </div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </div>
-      <span class="mod-btn">↗ Acessar materiais</span>
+      <div class="card-body">
+        <h3>Windows 11</h3>
+        <p>Sistema operacional, arquivos e pastas</p>
+      </div>
     </a>
 
-    <a href="https://drive.google.com/drive/folders/1tKzRhjNIECaLXkqTFqxD3S3VTnlAMrs0?usp=sharing"
-       target="_blank" class="mod-card word">
-      <div class="mod-icon">📝</div>
-      <div>
-        <div class="mod-name">Word</div>
-        <div class="mod-sub">Documentos, formatação e ABNT</div>
+    <a class="card word" target="_blank" rel="noopener"
+       href="https://drive.google.com/drive/folders/1tKzRhjNIECaLXkqTFqxD3S3VTnlAMrs0?usp=sharing">
+      <div class="card-top">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/></svg>
+        </div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </div>
-      <span class="mod-btn">↗ Acessar materiais</span>
+      <div class="card-body">
+        <h3>Word</h3>
+        <p>Documentos, formatação e ABNT</p>
+      </div>
     </a>
 
-    <a href="https://drive.google.com/drive/folders/1U7Y-PDYujqI3i9AIBdNPk_KfIbn0DXev?usp=sharing"
-       target="_blank" class="mod-card excel">
-      <div class="mod-icon">📊</div>
-      <div>
-        <div class="mod-name">Excel</div>
-        <div class="mod-sub">Planilhas, fórmulas e gráficos</div>
+    <a class="card excel" target="_blank" rel="noopener"
+       href="https://drive.google.com/drive/folders/1U7Y-PDYujqI3i9AIBdNPk_KfIbn0DXev?usp=sharing">
+      <div class="card-top">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+        </div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </div>
-      <span class="mod-btn">↗ Acessar materiais</span>
+      <div class="card-body">
+        <h3>Excel</h3>
+        <p>Planilhas, fórmulas e gráficos</p>
+      </div>
     </a>
 
-    <a href="https://drive.google.com/drive/folders/1U5H4eh4i30BxRI9j5lJL41PL8L2gUL7V?usp=sharing"
-       target="_blank" class="mod-card ppt">
-      <div class="mod-icon">📽️</div>
-      <div>
-        <div class="mod-name">PowerPoint</div>
-        <div class="mod-sub">Apresentações e animações</div>
+    <a class="card ppt" target="_blank" rel="noopener"
+       href="https://drive.google.com/drive/folders/1U5H4eh4i30BxRI9j5lJL41PL8L2gUL7V?usp=sharing">
+      <div class="card-top">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/></svg>
+        </div>
+        <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
       </div>
-      <span class="mod-btn">↗ Acessar materiais</span>
+      <div class="card-body">
+        <h3>PowerPoint</h3>
+        <p>Apresentações e animações</p>
+      </div>
     </a>
 
   </div>
 
-  <!-- ENTREGA -->
-  <p class="label">Entregar atividade</p>
-
-  <div class="entrega-box">
-    <h2>📤 Entregar atividade</h2>
-    <p class="sub">Clique no botão abaixo para abrir o formulário de entrega.</p>
-    <a href="https://forms.gle/tVrnSnnztEz7YAy4A" target="_blank" class="btn-primary" style="text-decoration:none; margin-top: 8px;">
-      📤 Abrir formulário de entrega
+  <section class="cta" id="entrega">
+    <div>
+      <h2>Entregar atividade</h2>
+      <p>Clique no botão ao lado para abrir o formulário de entrega.</p>
+    </div>
+    <a class="btn" href="https://forms.gle/tVrnSnnztEz7YAy4A" target="_blank" rel="noopener">
+      Abrir formulário de entrega
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
-  </div>
+  </section>
 
-</main>
+</div>
 
-<footer>
-  💻 Informática
-</footer>
+<footer>💻 Informática</footer>
 
+<script>
+  // brilho que acompanha o mouse nos cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+</script>
 
 </body>
 </html>
